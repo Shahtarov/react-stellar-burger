@@ -1,16 +1,35 @@
 import {
 	CurrencyIcon,
-	Button
+	Button,
+	ConstructorElement
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./BurgerConstructor.module.css";
+import cartPropType from "../../utils/propTypes/cartPropType";
+// import PropTypes from "prop-types";
 import CartList from "./CartList/CartList";
 
-const BurgerConstructor = ({ props }) => {
-	const totalPrice = props.reduce((total, item) => total + item.price, 0);
-
+const BurgerConstructor = ({ data }) => {
+	const totalPrice = data?.reduce((total, item) => total + item.price, 0);
+	// console.log(data);
 	return (
 		<section className={`${styles.container} pt-25 pl-4 pr-4`}>
-			<CartList props={props} />
+			<ConstructorElement
+				type="top"
+				isLocked={true}
+				text={`Краторная булка N-200i (верх)`}
+				price={1255}
+				thumbnail={"https://code.s3.yandex.net/react/code/bun-02.png"}
+			/>
+
+			<CartList data={data} />
+
+			<ConstructorElement
+				type="bottom"
+				isLocked={true}
+				text={`Краторная булка N-200i (низ)`}
+				price={1255}
+				thumbnail={"https://code.s3.yandex.net/react/code/bun-02.png"}
+			/>
 
 			<div className={`${styles.orderTotal} mr-4 mt-10`}>
 				<div className={`${styles.price}`}>
@@ -26,6 +45,10 @@ const BurgerConstructor = ({ props }) => {
 			</div>
 		</section>
 	);
+};
+
+BurgerConstructor.propTypes = {
+	data: cartPropType.isRequired
 };
 
 export default BurgerConstructor;

@@ -4,6 +4,6 @@
 
 .containerItems {
 	max-width: 600px;
-	height: 756px;
+	height: 60vh;
 	overflow-y: scroll;
 }

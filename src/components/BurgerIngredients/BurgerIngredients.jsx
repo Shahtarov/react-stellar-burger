@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./BurgerIngredients.module.css";
 import IngredientsList from "./IngredientsList/IngredientsList";
 
-const BurgerIngredients = ({ props }) => {
+const BurgerIngredients = ({ data }) => {
 	const [current, setCurrent] = useState("Булки");
 
 	return (
@@ -17,7 +17,6 @@ const BurgerIngredients = ({ props }) => {
 					active={current === "Булки"}
 					onClick={() => {
 						setCurrent("Булки");
-						window.location.href = "#buns";
 					}}
 				>
 					Булки
@@ -27,7 +26,6 @@ const BurgerIngredients = ({ props }) => {
 					active={current === "Соусы"}
 					onClick={() => {
 						setCurrent("Соусы");
-						window.location.href = "#sauces";
 					}}
 				>
 					Соусы
@@ -37,7 +35,6 @@ const BurgerIngredients = ({ props }) => {
 					active={current === "Ингредиенты"}
 					onClick={() => {
 						setCurrent("Ингредиенты");
-						window.location.href = "#ingredients";
 					}}
 				>
 					Ингредиенты
@@ -45,19 +42,19 @@ const BurgerIngredients = ({ props }) => {
 			</div>
 
 			<div className={`${styles.containerItems} custom-scroll`}>
-				<section id="buns">
+				<section>
 					<h2 className="text text_type_main-medium mt-10">Булки</h2>
-					<IngredientsList props={props} selectType="bun" />
+					<IngredientsList data={data} selectType="bun" />
 				</section>
 
-				<section id="sauces">
+				<section>
 					<h2 className="text text_type_main-medium mt-10">Соусы</h2>
-					<IngredientsList props={props} selectType="sauce" />
+					<IngredientsList data={data} selectType="sauce" />
 				</section>
 
-				<section id="ingredients">
+				<section>
 					<h2 className="text text_type_main-medium mt-10">Ингредиенты</h2>
-					<IngredientsList props={props} selectType="main" />
+					<IngredientsList data={data} selectType="main" />
 				</section>
 			</div>
 		</div>

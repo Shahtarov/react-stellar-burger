@@ -1,11 +1,11 @@
 import Ingredient from "../Ingredient/Ingredient";
 import styles from "./IngredientsList.module.css";
 
-const IngredientsList = ({ props, selectType }) => {
-	const elements = props.map((item) => {
+const IngredientsList = ({ data, selectType }) => {
+	const elements = data?.map((item) => {
 		const { _id, ...itemProps } = item;
 		if (selectType === itemProps.type) {
-			return <Ingredient key={_id} props={itemProps} />;
+			return <Ingredient key={_id} data={itemProps} />;
 		}
 	});
 
