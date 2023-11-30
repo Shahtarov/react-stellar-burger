@@ -1,0 +1,9 @@
+.container {
+	max-width: 600px;
+}
+
+.containerItems {
+	max-width: 600px;
+	height: 756px;
+	overflow-y: scroll;
+}

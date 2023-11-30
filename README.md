@@ -1,2 +1,18 @@
-# Каноническая работа проекта Stellar Burger 
-# Этап "Промежуточный проект. CRA-заготовка и структура папок под компоненты"
+# Project: Stellar Burger
+
+## Project Information
+
+Project burger constructor and ordering.
+
+---
+
+## The technology stack used
+
+-  JSX;
+-  React;
+-  API;
+-  Webpack;
+-  Babel;
+-  Figma.
+
+---

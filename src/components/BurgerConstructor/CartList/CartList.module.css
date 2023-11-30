@@ -1,0 +1,10 @@
+.itemList {
+	margin: 0;
+	padding: 0;
+	height: 656px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	list-style-type: none;
+	overflow-y: scroll;
+}
