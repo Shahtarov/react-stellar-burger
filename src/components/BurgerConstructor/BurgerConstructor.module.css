@@ -1,7 +1,3 @@
-/* .container {
-	width: 600px;
-} */
-
 .orderTotal {
 	width: 100%;
 	display: flex;
@@ -14,4 +10,9 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
+}
+
+.currencyIcon {
+	width: "36px";
+	height: "36px";
 }

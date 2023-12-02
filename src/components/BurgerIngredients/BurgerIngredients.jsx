@@ -2,6 +2,7 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
 import styles from "./BurgerIngredients.module.css";
 import IngredientsList from "./IngredientsList/IngredientsList";
+import ingredientsArrPropType from "../../utils/propTypes/ingredientsArrPropType";
 
 const BurgerIngredients = ({ data }) => {
 	const [current, setCurrent] = useState("Булки");
@@ -59,6 +60,10 @@ const BurgerIngredients = ({ data }) => {
 			</div>
 		</div>
 	);
+};
+
+BurgerIngredients.propTypes = {
+	data: ingredientsArrPropType.isRequired
 };
 
 export default BurgerIngredients;

@@ -4,13 +4,11 @@ import {
 	ConstructorElement
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./BurgerConstructor.module.css";
-import cartPropType from "../../utils/propTypes/cartPropType";
-// import PropTypes from "prop-types";
+import ingredientsArrPropType from "../../utils/propTypes/ingredientsArrPropType";
 import CartList from "./CartList/CartList";
 
 const BurgerConstructor = ({ data }) => {
 	const totalPrice = data?.reduce((total, item) => total + item.price, 0);
-	// console.log(data);
 	return (
 		<section className={`${styles.container} pt-25 pl-4 pr-4`}>
 			<ConstructorElement
@@ -35,7 +33,7 @@ const BurgerConstructor = ({ data }) => {
 				<div className={`${styles.price}`}>
 					<p className="text text_type_digits-medium">{totalPrice}</p>
 					<CurrencyIcon
-						style={{ width: "36px", height: "36px" }}
+						className={`${styles.currencyIcon}`}
 						type="secondary"
 					/>
 				</div>
@@ -48,7 +46,7 @@ const BurgerConstructor = ({ data }) => {
 };
 
 BurgerConstructor.propTypes = {
-	data: cartPropType.isRequired
+	data: ingredientsArrPropType.isRequired
 };
 
 export default BurgerConstructor;
