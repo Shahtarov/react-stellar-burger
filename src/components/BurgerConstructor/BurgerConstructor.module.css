@@ -1,0 +1,18 @@
+.orderTotal {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 40px;
+}
+
+.price {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.currencyIcon {
+	width: "36px";
+	height: "36px";
+}
