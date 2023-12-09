@@ -2,10 +2,17 @@ import Ingredient from "../Ingredient/Ingredient";
 import styles from "./IngredientsList.module.css";
 import ingredientsArrPropType from "../../../utils/propTypes/ingredientsArrPropType";
 
-const IngredientsList = ({ data, selectType }) => {
+const IngredientsList = ({ data, selectType, openIngredient }) => {
+	// console.log(data);
 	const elements = data?.map((item) => {
 		if (selectType === item.type) {
-			return <Ingredient key={item._id} data={item} />;
+			return (
+				<Ingredient
+					key={item._id}
+					data={item}
+					openIngredient={openIngredient}
+				/>
+			);
 		}
 	});
 

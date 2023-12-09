@@ -6,8 +6,13 @@ import {
 import styles from "./BurgerConstructor.module.css";
 import ingredientsArrPropType from "../../utils/propTypes/ingredientsArrPropType";
 import CartList from "./CartList/CartList";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
+import OrderDetails from "../OrderDetails/OrderDetails";
 
 const BurgerConstructor = ({ data }) => {
+	const [active, setActive] = useState(false);
+
 	const totalPrice = data?.reduce((total, item) => total + item.price, 0);
 	return (
 		<section className={`${styles.container} pt-25 pl-4 pr-4`}>
@@ -37,9 +42,19 @@ const BurgerConstructor = ({ data }) => {
 						type="secondary"
 					/>
 				</div>
-				<Button htmlType="button" type="primary" size="large">
+				<Button
+					htmlType="button"
+					type="primary"
+					size="large"
+					onClick={() => {
+						setActive(true);
+					}}
+				>
 					Оформить заказ
 				</Button>
+				<Modal active={active} setActive={setActive}>
+					<OrderDetails />
+				</Modal>
 			</div>
 		</section>
 	);

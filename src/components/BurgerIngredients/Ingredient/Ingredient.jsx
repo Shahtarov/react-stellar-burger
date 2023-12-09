@@ -6,11 +6,17 @@ import ingredientPropType from "../../../utils/propTypes/ingredientPropType";
 import { useState } from "react";
 import styles from "./Ingredients.module.css";
 
-const Ingredient = ({ data }) => {
+const Ingredient = ({ data, openIngredient }) => {
 	const [count, setCount] = useState(0);
 
 	return (
-		<li className={styles.item} onClick={() => setCount(count + 1)}>
+		<li
+			className={styles.item}
+			onClick={() => {
+				setCount(count + 1);
+				openIngredient(data);
+			}}
+		>
 			<div>
 				{count >= 1 ? (
 					<Counter count={count} size="default" extraClass="m-1" />

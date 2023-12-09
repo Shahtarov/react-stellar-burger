@@ -3,8 +3,9 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	max-width: 272px;
+	max-width: 271px;
 	position: relative;
+	cursor: pointer;
 }
 
 .itemName {

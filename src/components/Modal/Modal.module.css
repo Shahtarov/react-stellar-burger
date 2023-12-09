@@ -1,0 +1,27 @@
+.modal {
+	width: 720px;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	background-color: #1c1c21;
+	border: 1px solid rgba(76, 76, 255, 0.2);
+	border-radius: 40px;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04),
+		0px 4px 8px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.04),
+		0px 24px 32px 0px rgba(0, 0, 0, 0.04);
+}
+
+.header {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title {
+	height: 64px;
+}
+
+.closeIcon {
+	cursor: pointer;
+}
