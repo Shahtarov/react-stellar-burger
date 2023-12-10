@@ -4,7 +4,7 @@ import ingredientPropType from "../../utils/propTypes/ingredientPropType";
 const IngredientDetails = ({ data }) => {
 	return (
 		<div className={styles.container}>
-			<img src={data.image_large} alt={data.name} />
+			<img className={styles.image} src={data.image_large} alt={data.name} />
 			<h3 className={`text text_type_main-medium mt-4`}>{data.name}</h3>
 
 			<ul className={`${styles.details}`}>

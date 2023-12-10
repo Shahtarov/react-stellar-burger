@@ -1,10 +1,11 @@
 import styles from "./OrderDetails.module.css";
 import checkIcon from "../../images/graphics.png";
+import PropTypes from "prop-types";
 
-const OrderDetails = () => {
+const OrderDetails = ({ orderID }) => {
 	return (
 		<div className={`${styles.container}`}>
-			<h3 className="text text_type_digits-large">034536</h3>
+			<h3 className="text text_type_digits-large">{orderID}</h3>
 			<p className="text text_type_main-medium mt-8">идентификатор заказа</p>
 			<img
 				alt="Заказ оформлен"
@@ -19,6 +20,10 @@ const OrderDetails = () => {
 			</p>
 		</div>
 	);
+};
+
+OrderDetails.propTypes = {
+	orderID: PropTypes.string.isRequired
 };
 
 export default OrderDetails;

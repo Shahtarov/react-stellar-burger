@@ -1,15 +1,22 @@
-import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 
 const Portal = ({ children }) => {
-	const [container] = useState(() => document.createElement("div"));
+	const [container] = useState(() => {
+		const existingContainer = document.querySelector("#modals");
+		return existingContainer || document.createElement("div");
+	});
 
 	useEffect(() => {
-		document.body.appendChild(container);
+		if (!document.querySelector("#modals")) {
+			document.body.appendChild(container);
+		}
 
 		return () => {
-			document.body.removeChild(container);
+			if (!container.hasChildNodes()) {
+				document.body.removeChild(container);
+			}
 		};
 	}, [container]);
 

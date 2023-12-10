@@ -1,23 +1,28 @@
-import styles from "./ModalOverlay.module.css";
 import PropTypes from "prop-types";
+import styles from "./ModalOverlay.module.css";
+import { useEffect } from "react";
 
-const ModalOverlay = ({ active, setActive, children }) => {
-	return (
-		<div
-			onClick={() => {
-				setActive(false);
-			}}
-			className={active ? styles.modalOverlayActive : styles.modalOverlay}
-		>
-			{children}
-		</div>
-	);
+const ModalOverlay = ({ closeModal, children }) => {
+	useEffect(() => {
+		const closeOverlayClick = (e) => {
+			if (e.target.classList.contains(styles.modalOverlay)) {
+				closeModal();
+			}
+		};
+
+		document.addEventListener("click", closeOverlayClick);
+
+		return () => {
+			document.removeEventListener("click", closeOverlayClick);
+		};
+	}, [closeModal]);
+
+	return <div className={styles.modalOverlay}>{children}</div>;
 };
 
 ModalOverlay.propTypes = {
-	setActive: PropTypes.func.isRequired,
-	children: PropTypes.node,
-	active: PropTypes.bool.isRequired
+	closeModal: PropTypes.func.isRequired,
+	children: PropTypes.node.isRequired
 };
 
 export default ModalOverlay;

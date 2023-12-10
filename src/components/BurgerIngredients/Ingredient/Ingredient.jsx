@@ -5,8 +5,9 @@ import {
 import ingredientPropType from "../../../utils/propTypes/ingredientPropType";
 import { useState } from "react";
 import styles from "./Ingredients.module.css";
+import PropTypes from "prop-types";
 
-const Ingredient = ({ data, openIngredient }) => {
+const Ingredient = ({ data, handleIngredientDetails }) => {
 	const [count, setCount] = useState(0);
 
 	return (
@@ -14,7 +15,7 @@ const Ingredient = ({ data, openIngredient }) => {
 			className={styles.item}
 			onClick={() => {
 				setCount(count + 1);
-				openIngredient(data);
+				handleIngredientDetails(data);
 			}}
 		>
 			<div>
@@ -37,7 +38,8 @@ const Ingredient = ({ data, openIngredient }) => {
 };
 
 Ingredient.propTypes = {
-	data: ingredientPropType.isRequired
+	data: ingredientPropType.isRequired,
+	handleIngredientDetails: PropTypes.func.isRequired
 };
 
 export default Ingredient;

@@ -5,27 +5,27 @@ import Portal from "../Portal/Portal";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import PropTypes from "prop-types";
 
-const Modal = ({ active, setActive, title = "", children }) => {
-	const close = useCallback(
+const Modal = ({ closeModal, title = "", children }) => {
+	const closeEsc = useCallback(
 		(e) => {
 			if (e.key === "Escape") {
-				setActive(false);
+				closeModal();
 			}
 		},
-		[setActive]
+		[closeModal]
 	);
 
 	useEffect(() => {
-		document.addEventListener("keydown", close);
+		document.addEventListener("keydown", closeEsc);
 
 		return () => {
-			document.removeEventListener("keydown", close);
+			document.removeEventListener("keydown", closeEsc);
 		};
-	}, [close]);
+	}, [closeEsc]);
 
 	return (
 		<Portal>
-			<ModalOverlay active={active} setActive={setActive}>
+			<ModalOverlay closeModal={closeModal}>
 				<div
 					className={`${styles.modal} pt-10 pb-15 pr-10 pl-10`}
 					onClick={(e) => {
@@ -38,7 +38,7 @@ const Modal = ({ active, setActive, title = "", children }) => {
 							<CloseIcon
 								type="secondary"
 								onClick={() => {
-									setActive(false);
+									closeModal();
 								}}
 							/>
 						</div>
@@ -51,10 +51,9 @@ const Modal = ({ active, setActive, title = "", children }) => {
 };
 
 Modal.propTypes = {
-	setActive: PropTypes.func.isRequired,
+	closeModal: PropTypes.func.isRequired,
 	title: PropTypes.string,
-	children: PropTypes.node,
-	active: PropTypes.bool.isRequired
+	children: PropTypes.node.isRequired
 };
 
 export default Modal;

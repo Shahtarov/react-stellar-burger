@@ -6,13 +6,9 @@ import {
 import styles from "./BurgerConstructor.module.css";
 import ingredientsArrPropType from "../../utils/propTypes/ingredientsArrPropType";
 import CartList from "./CartList/CartList";
-import Modal from "../Modal/Modal";
-import { useState } from "react";
-import OrderDetails from "../OrderDetails/OrderDetails";
+import PropTypes from "prop-types";
 
-const BurgerConstructor = ({ data }) => {
-	const [active, setActive] = useState(false);
-
+const BurgerConstructor = ({ data, handleOrderDetailsOpen }) => {
 	const totalPrice = data?.reduce((total, item) => total + item.price, 0);
 	return (
 		<section className={`${styles.container} pt-25 pl-4 pr-4`}>
@@ -47,21 +43,19 @@ const BurgerConstructor = ({ data }) => {
 					type="primary"
 					size="large"
 					onClick={() => {
-						setActive(true);
+						handleOrderDetailsOpen();
 					}}
 				>
 					Оформить заказ
 				</Button>
-				<Modal active={active} setActive={setActive}>
-					<OrderDetails />
-				</Modal>
 			</div>
 		</section>
 	);
 };
 
 BurgerConstructor.propTypes = {
-	data: ingredientsArrPropType.isRequired
+	data: ingredientsArrPropType.isRequired,
+	handleOrderDetailsOpen: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;

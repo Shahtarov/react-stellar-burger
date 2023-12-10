@@ -13,6 +13,12 @@
 	list-style-type: none;
 }
 
+.image {
+	width: 480px;
+	height: 240px;
+	object-fit: cover;
+}
+
 .li {
 	margin: 0;
 	padding: 0;
