@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 
 const BurgerConstructor = ({ data, handleOrderDetailsOpen }) => {
 	const totalPrice = data?.reduce((total, item) => total + item.price, 0);
+
 	return (
 		<section className={`${styles.container} pt-25 pl-4 pr-4`}>
 			<ConstructorElement
