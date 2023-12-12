@@ -5,14 +5,16 @@ import ingredientsArrPropType from "../../../utils/propTypes/ingredientsArrPropT
 const CartList = ({ data }) => {
 	return (
 		<ul className={`${styles.itemList} custom-scroll`}>
-			{data?.map(({ _id, ...itemProps }) => (
-				<ConstructorElement
-					text={itemProps.name}
-					price={itemProps.price}
-					thumbnail={itemProps.image}
-					key={_id}
-				/>
-			))}
+			{data?.map(({ _id, type, ...itemProps }) =>
+				type !== "bun" ? (
+					<ConstructorElement
+						text={itemProps.name}
+						price={itemProps.price}
+						thumbnail={itemProps.image}
+						key={_id}
+					/>
+				) : null
+			)}
 		</ul>
 	);
 };

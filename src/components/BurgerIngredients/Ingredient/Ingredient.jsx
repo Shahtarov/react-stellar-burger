@@ -1,21 +1,25 @@
 import {
-	Counter,
+	// Counter,
 	CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientPropType from "../../../utils/propTypes/ingredientPropType";
-import { useState } from "react";
+// import { useState } from "react";
 import styles from "./Ingredients.module.css";
+import PropTypes from "prop-types";
 
-const Ingredient = ({ data }) => {
-	const [count, setCount] = useState(0);
-
+const Ingredient = ({ data, handleIngredientDetails }) => {
 	return (
-		<li className={styles.item} onClick={() => setCount(count + 1)}>
-			<div>
+		<li
+			className={styles.item}
+			onClick={() => {
+				handleIngredientDetails(data);
+			}}
+		>
+			{/* <div>
 				{count >= 1 ? (
 					<Counter count={count} size="default" extraClass="m-1" />
 				) : null}
-			</div>
+			</div> */}
 
 			<img src={data.image} alt={data.name} />
 
@@ -31,7 +35,8 @@ const Ingredient = ({ data }) => {
 };
 
 Ingredient.propTypes = {
-	data: ingredientPropType.isRequired
+	data: ingredientPropType.isRequired,
+	handleIngredientDetails: PropTypes.func.isRequired
 };
 
 export default Ingredient;

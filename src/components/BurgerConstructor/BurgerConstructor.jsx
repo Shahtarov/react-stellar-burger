@@ -6,9 +6,11 @@ import {
 import styles from "./BurgerConstructor.module.css";
 import ingredientsArrPropType from "../../utils/propTypes/ingredientsArrPropType";
 import CartList from "./CartList/CartList";
+import PropTypes from "prop-types";
 
-const BurgerConstructor = ({ data }) => {
+const BurgerConstructor = ({ data, handleOrderDetailsOpen }) => {
 	const totalPrice = data?.reduce((total, item) => total + item.price, 0);
+
 	return (
 		<section className={`${styles.container} pt-25 pl-4 pr-4`}>
 			<ConstructorElement
@@ -37,7 +39,14 @@ const BurgerConstructor = ({ data }) => {
 						type="secondary"
 					/>
 				</div>
-				<Button htmlType="button" type="primary" size="large">
+				<Button
+					htmlType="button"
+					type="primary"
+					size="large"
+					onClick={() => {
+						handleOrderDetailsOpen();
+					}}
+				>
 					Оформить заказ
 				</Button>
 			</div>
@@ -46,7 +55,8 @@ const BurgerConstructor = ({ data }) => {
 };
 
 BurgerConstructor.propTypes = {
-	data: ingredientsArrPropType.isRequired
+	data: ingredientsArrPropType.isRequired,
+	handleOrderDetailsOpen: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;
