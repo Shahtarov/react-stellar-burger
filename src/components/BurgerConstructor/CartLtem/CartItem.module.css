@@ -1,12 +1,8 @@
 .item {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	max-width: 271px;
-	width: 271px;
-	position: relative;
-	cursor: pointer;
+	gap: 8px;
+	width: 100%;
 }
 
 .item:hover {
@@ -21,13 +17,8 @@
 	cursor: -webkit-grabbing;
 }
 
-.itemName {
-	width: 100%;
-	text-align: center;
-}
-
-.price {
+.itemContent {
+	margin: 0;
 	display: flex;
 	align-items: center;
-	gap: 8px;
 }
