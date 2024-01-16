@@ -3,14 +3,14 @@ import styles from "./IngredientsList.module.css";
 import ingredientsArrPropType from "../../../utils/propTypes/ingredientsArrPropType";
 import PropTypes from "prop-types";
 
-const IngredientsList = ({ data, selectType, handleIngredientDetails }) => {
+const IngredientsList = ({ data, selectType, openIngredient }) => {
 	const elements = data?.map((item) => {
 		if (selectType === item.type) {
 			return (
 				<Ingredient
 					key={item._id}
 					data={item}
-					handleIngredientDetails={handleIngredientDetails}
+					openIngredient={openIngredient}
 				/>
 			);
 		}
@@ -22,7 +22,7 @@ const IngredientsList = ({ data, selectType, handleIngredientDetails }) => {
 IngredientsList.propTypes = {
 	data: ingredientsArrPropType.isRequired,
 	selectType: PropTypes.string.isRequired,
-	handleIngredientDetails: PropTypes.func.isRequired
+	openIngredient: PropTypes.func.isRequired
 };
 
 export default IngredientsList;

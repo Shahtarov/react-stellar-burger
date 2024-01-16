@@ -1,26 +1,18 @@
 import styles from "./CartList.module.css";
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import ingredientsArrPropType from "../../../utils/propTypes/ingredientsArrPropType";
+import { useSelector } from "react-redux";
+import * as burgerConstructorSelector from "../../../services/reducers/burger-constructor/selectors";
+import CartItem from "../CartItem/CartItem";
 
-const CartList = ({ data }) => {
+const CartList = () => {
+	const main = useSelector(burgerConstructorSelector.main);
+
 	return (
-		<ul className={`${styles.itemList} custom-scroll`}>
-			{data?.map(({ _id, type, ...itemProps }) =>
-				type !== "bun" ? (
-					<ConstructorElement
-						text={itemProps.name}
-						price={itemProps.price}
-						thumbnail={itemProps.image}
-						key={_id}
-					/>
-				) : null
-			)}
-		</ul>
+		<div className={`${styles.itemList} custom-scroll`}>
+			{main?.map((itemProps) => {
+				return <CartItem ingredient={itemProps} key={itemProps.id} />;
+			})}
+		</div>
 	);
-};
-
-CartList.propTypes = {
-	data: ingredientsArrPropType.isRequired
 };
 
 export default CartList;
