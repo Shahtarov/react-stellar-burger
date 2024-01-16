@@ -2,18 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	ingredientDetails: {
-		_id: "",
-		name: "",
-		type: "",
-		proteins: 0,
-		fat: 0,
-		carbohydrates: 0,
-		calories: 0,
-		price: 0,
-		image: "",
-		image_mobile: "",
-		image_large: "",
-		__v: 0
+		_id: null,
+		name: null,
+		type: null,
+		proteins: null,
+		fat: null,
+		carbohydrates: null,
+		calories: null,
+		price: null,
+		image: null,
+		image_mobile: null,
+		image_large: null,
+		__v: null
 	}
 };
 

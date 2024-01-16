@@ -3,6 +3,7 @@ import {
 	ConstructorElement,
 	DragIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import ingredientPropType from "../../../utils/propTypes/ingredientPropType";
 import { useDispatch, useSelector } from "react-redux";
 import * as burgerConstructorSelector from "../../../services/reducers/burger-constructor/selectors";
 import {
@@ -14,21 +15,20 @@ import { decrementCountIngredient } from "../../../services/reducers/ingredients
 
 const CartItem = ({ ingredient }) => {
 	const dispatch = useDispatch();
-	const data = useSelector(burgerConstructorSelector.main);
-	console.log(data);
+	const main = useSelector(burgerConstructorSelector.main);
 	const removeMain = (item) => {
 		dispatch(deleteMain(item.id));
 		dispatch(decrementCountIngredient(item._id));
 	};
 
 	const dropHandler = (dropIngredient) => {
-		const indexIngredient = data.findIndex(
+		const indexIngredient = main.findIndex(
 			(item) => item.id === ingredient.id
 		);
-		const indexDropIngredient = data.findIndex(
+		const indexDropIngredient = main.findIndex(
 			(item) => item.id === dropIngredient.id
 		);
-		let mainDisposition = [...data];
+		let mainDisposition = [...main];
 
 		if (indexIngredient < indexDropIngredient) {
 			mainDisposition.splice(indexDropIngredient, 1);
@@ -66,7 +66,7 @@ const CartItem = ({ ingredient }) => {
 				className={`${styles.item}`}
 				style={{ opacity }}
 				ref={drag}
-				data-handler-id={handlerId}
+				main-handler-id={handlerId}
 			>
 				<DragIcon type="primary" />
 				<ConstructorElement
@@ -80,6 +80,10 @@ const CartItem = ({ ingredient }) => {
 			</div>
 		</div>
 	);
+};
+
+CartItem.propTypes = {
+	ingredient: ingredientPropType.isRequired
 };
 
 export default CartItem;

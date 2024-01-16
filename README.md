@@ -11,6 +11,7 @@ Project burger constructor and ordering.
 -  JSX;
 -  React;
 -  Redux;
+-  Redux toolkit;
 -  API;
 -  Webpack;
 -  Babel;

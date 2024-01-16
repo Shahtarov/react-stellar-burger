@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import {
 	Counter,
 	CurrencyIcon
@@ -9,7 +10,8 @@ import { useDrag } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
 
 const Ingredient = ({ data, openIngredient }) => {
-	const id = uuidv4();
+	const id = useMemo(() => uuidv4(), []); // Генерация id только при первом рендере
+
 	const [{ opacity }, dragRef] = useDrag({
 		type: "ingredient",
 		item: { ...data, id: id },
