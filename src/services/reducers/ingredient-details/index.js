@@ -1,20 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	ingredientDetails: {
-		_id: null,
-		name: null,
-		type: null,
-		proteins: null,
-		fat: null,
-		carbohydrates: null,
-		calories: null,
-		price: null,
-		image: null,
-		image_mobile: null,
-		image_large: null,
-		__v: null
-	}
+	ingredientDetails: null
 };
 
 export const ingredientDetailsSlice = createSlice({

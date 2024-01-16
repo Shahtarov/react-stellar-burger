@@ -33,10 +33,34 @@ const burgerConstructorSlice = createSlice({
 				(item) => item.id !== action.payload
 			);
 		},
+		setMainDisposition: (state, action) => {
+			const { dropIngredient, ingredient } = action.payload;
+			const indexIngredient = state.main.findIndex(
+				(item) => item.id === ingredient.id
+			);
+			const indexDropIngredient = state.main.findIndex(
+				(item) => item.id === dropIngredient.id
+			);
+			let mainDisposition = [...state.main];
+
+			if (indexIngredient < indexDropIngredient) {
+				mainDisposition.splice(indexDropIngredient, 1);
+				mainDisposition.splice(indexIngredient, 0, dropIngredient);
+			} else {
+				mainDisposition.splice(indexIngredient + 1, 0, dropIngredient);
+				mainDisposition.splice(indexDropIngredient, 1);
+			}
+			state.main = mainDisposition;
+		},
 		resetBurgerConstructor: () => initialState
 	}
 });
 
-export const { setBun, setMain, deleteMain, resetBurgerConstructor } =
-	burgerConstructorSlice.actions;
+export const {
+	setBun,
+	setMain,
+	deleteMain,
+	resetBurgerConstructor,
+	setMainDisposition
+} = burgerConstructorSlice.actions;
 export default burgerConstructorSlice.reducer;

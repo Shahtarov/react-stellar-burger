@@ -2,13 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { sendOrderIngredients } from "../../api";
 
 const initialState = {
-	orderDetails: {
-		name: "",
-		order: {
-			number: 0
-		},
-		success: false
-	},
+	orderDetails: null,
 	loading: "idle",
 	error: null
 };
@@ -32,6 +26,7 @@ export const orderDetailsSlice = createSlice({
 			})
 			.addCase(sendOrderDetailsThunk.rejected, (state, action) => {
 				state.loading = "failed";
+				state.orderDetails = null;
 				state.error = action.error;
 			})
 			.addCase(sendOrderDetailsThunk.fulfilled, (state, action) => {

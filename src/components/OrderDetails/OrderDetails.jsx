@@ -9,7 +9,7 @@ const OrderDetails = () => {
 	return (
 		<div className={`${styles.container}`}>
 			<h3 className="text text_type_digits-large">
-				{orderDetails.order.number}
+				{orderDetails?.order.number}
 			</h3>
 			<p className="text text_type_main-medium mt-8">идентификатор заказа</p>
 			<img

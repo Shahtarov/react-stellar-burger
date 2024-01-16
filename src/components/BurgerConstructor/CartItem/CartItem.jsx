@@ -4,40 +4,23 @@ import {
 	DragIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientPropType from "../../../utils/propTypes/ingredientPropType";
-import { useDispatch, useSelector } from "react-redux";
-import * as burgerConstructorSelector from "../../../services/reducers/burger-constructor/selectors";
+import { useDispatch } from "react-redux";
 import {
 	deleteMain,
-	setMain
+	setMainDisposition
 } from "../../../services/reducers/burger-constructor";
 import { useDrag, useDrop } from "react-dnd";
 import { decrementCountIngredient } from "../../../services/reducers/ingredients";
 
 const CartItem = ({ ingredient }) => {
 	const dispatch = useDispatch();
-	const main = useSelector(burgerConstructorSelector.main);
 	const removeMain = (item) => {
 		dispatch(deleteMain(item.id));
 		dispatch(decrementCountIngredient(item._id));
 	};
 
 	const dropHandler = (dropIngredient) => {
-		const indexIngredient = main.findIndex(
-			(item) => item.id === ingredient.id
-		);
-		const indexDropIngredient = main.findIndex(
-			(item) => item.id === dropIngredient.id
-		);
-		let mainDisposition = [...main];
-
-		if (indexIngredient < indexDropIngredient) {
-			mainDisposition.splice(indexDropIngredient, 1);
-			mainDisposition.splice(indexIngredient, 0, dropIngredient);
-		} else {
-			mainDisposition.splice(indexIngredient + 1, 0, dropIngredient);
-			mainDisposition.splice(indexDropIngredient, 1);
-		}
-		dispatch(setMain(mainDisposition));
+		dispatch(setMainDisposition({ dropIngredient, ingredient }));
 	};
 
 	const [{ handlerId }, drop] = useDrop({
