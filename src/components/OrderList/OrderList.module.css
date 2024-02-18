@@ -1,0 +1,13 @@
+.link {
+	text-decoration: none;
+	color: #f2f2f3;
+}
+
+.list {
+	margin: 0;
+	padding: 0;
+	height: 72vh;
+	list-style: none;
+	overflow: scroll;
+	overflow-x: hidden;
+}

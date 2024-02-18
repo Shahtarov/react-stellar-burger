@@ -61,7 +61,7 @@ const BurgerConstructor = () => {
 			ref={drop}
 			className={`
 				${styles.container}
-				 pt-25
+				 mt-15 pt-10
 				 ${isHover ? styles.onHover : ""}
 			`}
 		>

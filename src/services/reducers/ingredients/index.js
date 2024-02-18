@@ -61,7 +61,7 @@ export const ingredientsSlice = createSlice({
 			})
 			.addCase(getIngredientsThunk.fulfilled, (state, action) => {
 				state.loading = "succeeded";
-				state.ingredients = action.payload.data;
+				state.ingredients = action.payload;
 				state.error = initialState.error;
 			});
 	}

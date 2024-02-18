@@ -44,15 +44,15 @@ const BurgerIngredients = () => {
 	const mainRef = useRef(null);
 
 	const buns = useMemo(
-		() => ingredients.filter((item) => item?.type === "bun"),
+		() => ingredients?.filter((item) => item?.type === "bun") || [],
 		[ingredients]
 	);
 	const main = useMemo(
-		() => ingredients.filter((item) => item?.type === "main"),
+		() => ingredients?.filter((item) => item?.type === "main") || [],
 		[ingredients]
 	);
 	const sauces = useMemo(
-		() => ingredients.filter((item) => item?.type === "sauce"),
+		() => ingredients?.filter((item) => item?.type === "sauce") || [],
 		[ingredients]
 	);
 

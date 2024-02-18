@@ -1,0 +1,16 @@
+.main {
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	gap: 60px;
+}
+
+.container {
+	width: 608px;
+	height: 100%;
+}
+
+.link {
+	color: #f2f2f3;
+	text-decoration: none;
+}

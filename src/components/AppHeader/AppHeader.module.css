@@ -20,6 +20,16 @@
 .item {
 	display: flex;
 	align-items: center;
+	text-decoration: none;
+	gap: 5px;
+}
+
+.textColor {
+	color: #fff;
+}
+
+.textColor:hover {
+	color: #cecece;
 }
 
 .containerItems {
