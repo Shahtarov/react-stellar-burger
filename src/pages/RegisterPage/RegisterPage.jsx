@@ -46,6 +46,7 @@ export const RegisterPage = () => {
 					extraClass={`ml-1 ${isNameFocused ? styles.focused : ""}`}
 					onFocus={() => setIsNameFocused(true)}
 					onBlur={() => setIsNameFocused(false)}
+					autoComplete={"name"}
 				/>
 				<Input
 					type={"email"}
@@ -59,6 +60,7 @@ export const RegisterPage = () => {
 					extraClass={`ml-1 ${isEmailFocused ? styles.focused : ""}`}
 					onFocus={() => setIsEmailFocused(true)}
 					onBlur={() => setIsEmailFocused(false)}
+					autoComplete={"email"}
 				/>
 				<Input
 					type={showPassword ? "text" : "password"}
@@ -74,6 +76,7 @@ export const RegisterPage = () => {
 					extraClass={`ml-1 ${isPasswordFocused ? styles.focused : ""}`}
 					onFocus={() => setIsPasswordFocused(true)}
 					onBlur={() => setIsPasswordFocused(false)}
+					autoComplete={"new-password"}
 				/>
 				<Button htmlType="submit" type="primary" size="medium">
 					Зарегистрироваться

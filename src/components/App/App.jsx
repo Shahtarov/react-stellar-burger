@@ -9,51 +9,50 @@ import {
 	ForgotPasswordPage,
 	ResetPasswordPage,
 	ProfilePage,
-	FeedOrdersPage
+	FeedOrdersPage,
+	IngredientPage
 } from "../../pages";
 import { AppHeader } from "../AppHeader/AppHeader";
 import { OnlyAuth, OnlyUnAuth } from "../ProtectedRoute/ProtectedRoute";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserThunk, reset } from "../../services/reducers/auth";
+import { useLocation } from "react-router-dom";
+import { getIngredientsThunk } from "../../services/reducers/ingredients";
+import IngredientModal from "../IngredientModal/IngredientModal";
 
 function App() {
 	const dispatch = useDispatch();
+	const { state } = useLocation();
 
 	useEffect(() => {
 		const accessToken = localStorage.getItem("accessToken");
 		const refreshToken = localStorage.getItem("refreshToken");
 		dispatch(getUserThunk());
+		dispatch(getIngredientsThunk());
 
 		if (!accessToken && !refreshToken) {
 			dispatch(reset());
 		}
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className={styles.app}>
 			<AppHeader />
 
-			<Routes>
-				<Route exact path="/" element={<HomePage />} />
-				<Route exact path="*" element={<NotFoundPage />} />
-				<Route exact path="/feed" element={<FeedOrdersPage />} />
-				{/* <Route
-					path="/feed"
-					element={<OnlyAuth component={<ProfilePage />} />}
-				/> */}
+			<Routes location={state?.isOpenModal}>
+				<Route path="/" element={<HomePage />} />
+				<Route path="*" element={<NotFoundPage />} />
+				<Route path="/feed" element={<FeedOrdersPage />} />
 				<Route
-					exact
 					path="/feed/:id"
 					element={<OnlyAuth component={<ProfilePage />} />}
 				/>
 				<Route
-					exact
 					path="/login"
 					element={<OnlyUnAuth component={<LoginPage />} />}
 				/>
 				<Route
-					exact
 					path="/register"
 					element={<OnlyUnAuth component={<RegisterPage />} />}
 				/>
@@ -62,31 +61,23 @@ function App() {
 					element={<OnlyUnAuth component={<ForgotPasswordPage />} />}
 				/>
 				<Route
-					exact
 					path="/reset-password"
 					element={<OnlyUnAuth component={<ResetPasswordPage />} />}
 				/>
 				<Route
-					exact
 					path="/profile"
 					element={<OnlyAuth component={<ProfilePage />} />}
 				/>
 
-				{/* <Route path="/ingredients/:id" element={<IngredientPage />} /> */}
+				<Route path="/ingredients/:id" element={<IngredientPage />} />
 			</Routes>
+			{state?.isOpenModal && (
+				<Routes>
+					<Route path="ingredients/:id" element={<IngredientModal />} />
+				</Routes>
+			)}
 		</div>
 	);
 }
-// 	/login — страница авторизации.
-
-// /register — страница регистрации.
-
-// /forgot-password — страница восстановления пароля.
-
-// /reset-password — страница сброса пароля.
-
-// /profile — страница с настройками профиля пользователя.
-
-// /ingredients/:id — страница ингредиента.
 
 export default App;

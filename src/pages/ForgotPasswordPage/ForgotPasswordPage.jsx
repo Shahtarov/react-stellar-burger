@@ -40,6 +40,7 @@ export const ForgotPasswordPage = () => {
 					errorText={"Ошибка. Введите существующий email"}
 					size={"default"}
 					extraClass="ml-1"
+					autoComplete={"email"}
 				/>
 				<Button
 					htmlType="submit"

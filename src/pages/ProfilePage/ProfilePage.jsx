@@ -52,15 +52,9 @@ export const ProfilePage = () => {
 	}, [user]);
 
 	useEffect(() => {
-		if (isPasswordFocus) {
-			if (typePassword === "password") {
-				setPasswordIcon("ShowIcon");
-			} else {
-				setPasswordIcon("HideIcon");
-			}
-		} else {
-			setPasswordIcon("EditIcon");
-		}
+		if (!isPasswordFocus) return setPasswordIcon("EditIcon");
+		if (typePassword === "password") return setPasswordIcon("ShowIcon");
+		setPasswordIcon("HideIcon");
 	}, [isPasswordFocus, typePassword]);
 
 	const onSubmit = async (e) => {
@@ -153,6 +147,7 @@ export const ProfilePage = () => {
 					size={"default"}
 					extraClass="ml-1"
 					icon={"EditIcon"}
+					autoComplete={"name"}
 				/>
 				<Input
 					type={"email"}
@@ -167,9 +162,10 @@ export const ProfilePage = () => {
 					size={"default"}
 					extraClass="ml-1"
 					icon="EditIcon"
+					autoComplete={"email"}
 				/>
 				<Input
-					//type={"password"}
+					type={typePassword}
 					placeholder={"Пароль"}
 					onChange={(e) => setPasswordInput(e.target.value)}
 					value={passwordInput}
@@ -180,9 +176,7 @@ export const ProfilePage = () => {
 					onIconClick={(e) => onIconClick(e, "password")}
 					size={"default"}
 					extraClass="ml-1"
-					//icon="EditIcon"
-					autoComplete={passwordInput}
-					type={typePassword}
+					autoComplete={"new-password"}
 					icon={passwordIcon}
 					onFocus={() => setIsPasswordFocus(true)}
 				/>

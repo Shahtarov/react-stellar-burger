@@ -55,7 +55,7 @@ export const ResetPasswordPage = () => {
 					onIconClick={toggleShowPassword}
 					size={"default"}
 					extraClass="ml-1"
-					autoFocus
+					autoComplete={"new-password"}
 				/>
 				<Input
 					ref={resetCodeInput}

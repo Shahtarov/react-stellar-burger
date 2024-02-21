@@ -44,6 +44,7 @@ export const LoginPage = () => {
 					extraClass={`ml-1 ${isEmailFocused ? styles.focused : ""}`}
 					onFocus={() => setIsEmailFocused(true)}
 					onBlur={() => setIsEmailFocused(false)}
+					autoComplete={"email"}
 				/>
 				<Input
 					type={showPassword ? "text" : "password"}
@@ -59,6 +60,7 @@ export const LoginPage = () => {
 					onIconClick={toggleShowPassword}
 					onFocus={() => setIsPasswordFocused(true)}
 					onBlur={() => setIsPasswordFocused(false)}
+					autoComplete={"current-password"}
 				/>
 				<Button htmlType="submit" type="primary" size="medium">
 					Войти
