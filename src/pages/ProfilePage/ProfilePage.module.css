@@ -1,12 +1,8 @@
 .main {
-	margin-top: 100px;
+	margin: 100px auto 0;
+	width: 1060px;
 	display: flex;
-	justify-content: center;
-	gap: 60px;
-}
-
-.nav {
-	width: 320px;
+	justify-content: space-between;
 }
 
 .form {
@@ -16,42 +12,8 @@
 	gap: 24px;
 }
 
-.ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-.li {
-	height: 64px;
-	display: flex;
-	align-items: center;
-}
-
-.link {
-	color: #8585ad;
-	margin: 0;
-	text-decoration: none;
-	font-family: "Jet Brains Mono";
-	font-weight: bold;
-	font-size: 24px;
-	line-height: 1.25;
-}
-
-.link:hover {
-	opacity: 0.6;
-}
-
-.linkActive {
-	color: #fff;
-}
-
 .buttonsEdit {
 	display: flex;
 	justify-content: center;
 	gap: 30px;
-}
-
-.active {
-	color: #fff;
 }

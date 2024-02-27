@@ -1,49 +1,48 @@
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-// import PropTypes
 
-const Protected = ({ onlyUnAuth = false, component }) => {
-	// isAuthChecked это флаг, показывающий что проверка токена произведена
-	// при этом результат этой проверки не имеет значения, важно только,
-	// что сам факт проверки имел место.
-	const isAuthChecked = useSelector((store) => store.authSlice.isAuthChecked);
-	const user = useSelector((store) => store.authSlice.user);
+export const ProtectedRoute = ({
+	children,
+	onlyUnAuth = false,
+	onlyAuth = false
+}) => {
+	const accessToken = localStorage.getItem("accessToken");
 	const location = useLocation();
-
-	if (!isAuthChecked) {
-		// Запрос еще выполняется
-		// Выводим прелоадер в ПР
-		// Здесь возвращается просто null для экономии времени
-		return null;
+	if (onlyUnAuth) {
+		return !accessToken ? (
+			<>{children}</>
+		) : (
+			<Navigate to={"/"} state={{ from: location }} />
+		);
 	}
-
-	if (onlyUnAuth && user) {
-		// Пользователь авторизован, но роут предназначен для неавторизованного пользователя
-		// Делаем редирект на главную страницу или на тот адрес, что записан в location.state.from
-		const { from } = location.state || { from: { pathname: "/" } };
-		return <Navigate to={from} />;
+	if (onlyAuth) {
+		return accessToken ? (
+			<>{children}</>
+		) : (
+			<Navigate to={"/login"} state={{ from: location }} />
+		);
 	}
-
-	if (!onlyUnAuth && !user) {
-		return <Navigate to="/login" state={{ from: location }} />;
-	}
-
-	// !onlyUnAuth && user Пользователь авторизован и роут для авторизованного пользователя
-
-	return component;
+	return null;
 };
 
-export const OnlyAuth = Protected;
-export const OnlyUnAuth = ({ component }) => (
-	<Protected onlyUnAuth={true} component={component} />
+export const OnlyAuth = ({ children }) => (
+	<ProtectedRoute onlyAuth={true} children={children} />
+);
+export const OnlyUnAuth = ({ children }) => (
+	<ProtectedRoute onlyUnAuth={true} children={children} />
 );
 
-Protected.propTypes = {
+ProtectedRoute.propTypes = {
+	children: PropTypes.node.isRequired,
 	onlyAuth: PropTypes.bool,
-	component: PropTypes.element.isRequired
+	onlyUnAuth: PropTypes.bool
 };
 
 OnlyUnAuth.propTypes = {
-	component: PropTypes.element.isRequired
+	children: PropTypes.node.isRequired
+};
+
+OnlyAuth.propTypes = {
+	children: PropTypes.node.isRequired
 };

@@ -1,27 +1,111 @@
 import styles from "./OrderItem.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import moment from "moment";
+import "moment/locale/ru";
+import { useLocation, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const OrderItem = () => {
+const OrdersItem = ({ isShowStatus, orderFeedItem }) => {
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	const STATUSES = {
+		done: "Выполнен",
+		pending: "Готовится",
+		created: "Создан"
+	};
+
+	const getFormatTime = (time) => {
+		moment.locale("ru");
+		return moment(time).calendar();
+	};
+	const formattedOrderTime = getFormatTime(orderFeedItem?.createdAt);
+
+	const openOrder = () => {
+		const currentPath = location.pathname;
+		let path;
+
+		switch (currentPath) {
+			case "/feed":
+				path = "/feed";
+				break;
+			case "/profile/orders":
+				path = "/profile/orders";
+				break;
+			default:
+				path = "/";
+				break;
+		}
+
+		const orderNumber = orderFeedItem.number;
+		const newPath = `${path}/${orderNumber}`;
+
+		navigate(newPath, {
+			state: { background: location }
+		});
+	};
+
 	return (
-		<li className={`${styles.card} p-6 mb-4`}>
+		<li className={`${styles.card} p-6 mb-4`} onClick={openOrder}>
 			<div className={`${styles.caption}`}>
-				<p className={`text text_type_digits-default`}>#050011</p>
+				<p
+					className={`text text_type_digits-default`}
+				>{`#${orderFeedItem.number}`}</p>
 				<p className={`text text_type_main-default text_color_inactive`}>
-					Сегодня, 16:20 i-GMT+3
+					{formattedOrderTime}
 				</p>
 			</div>
-			<p className={`${styles.info} text text_type_main-medium`}>
-				Death Star Starship Main бургер
-			</p>
+			<h2 className={`${styles.info} text text_type_main-medium`}>
+				{orderFeedItem.name}
+			</h2>
 
-			<div className={`${styles.ingredients} mt-6`}>
-				{/* список иконок ингредиентов в заказе*/}
+			{isShowStatus && (
+				<p
+					className={`text text_type_main-default ${
+						orderFeedItem?.status === "done" && styles.orderStatusDone
+					}`}
+				>
+					{STATUSES[`${orderFeedItem?.status}`]}
+				</p>
+			)}
+			<div className={`${styles.bottomBlock}`}>
+				<div className={`${styles.ingredientsImages}`}>
+					{orderFeedItem.ingredients
+						.slice(0, 6)
+						.reverse()
+						.map((item, index) => {
+							return (
+								<div
+									className={`${styles.ingredientImageBlock}`}
+									key={index}
+								>
+									<div className={`${styles.ingredientImageRound}`} />
+									<img
+										src={item.image}
+										alt={item.name}
+										className={`${styles.ingredientImage} ${
+											item.hiddenIngredientsNumber &&
+											index === 0 &&
+											styles.imageOverlay
+										}`}
+									/>
+									{item.hiddenIngredientsNumber && (
+										<span
+											className={`${styles.nextCount} text text_type_digits-default`}
+										>
+											{`+${item.hiddenIngredientsNumber}`}
+										</span>
+									)}
+								</div>
+							);
+						})}
+				</div>
 
 				<div className={`${styles.price} ml-6`}>
 					<p
 						className={`${styles.digits} text text_type_digits-default mr-2`}
 					>
-						45444
+						{orderFeedItem.totalPrice}
 					</p>
 					<CurrencyIcon type="primary" />
 				</div>
@@ -30,4 +114,9 @@ const OrderItem = () => {
 	);
 };
 
-export default OrderItem;
+OrdersItem.propTypes = {
+	isShowStatus: PropTypes.bool.isRequired,
+	orderFeedItem: PropTypes.object.isRequired
+};
+
+export default OrdersItem;

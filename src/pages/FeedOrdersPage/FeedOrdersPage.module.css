@@ -1,16 +1,15 @@
 .main {
-	margin-top: 40px;
+	margin-top: 25px;
 	display: flex;
-	justify-content: center;
-	gap: 60px;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
 }
 
 .container {
-	width: 608px;
-	height: 100%;
-}
-
-.link {
-	color: #f2f2f3;
-	text-decoration: none;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 60px;
 }

@@ -3,11 +3,13 @@ import {
 	Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./ProfilePage.module.css";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { logoutThunk, patchUserThunk } from "../../services/reducers/auth";
+// import { logoutThunk, patchUserThunk } from "../../services/reducers/auth";
+import { patchUserThunk } from "../../services/reducers/auth";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { ProfileNavigation } from "../../components/ProfileNavigation/ProfileNavigation";
 
 export const ProfilePage = () => {
 	const [showButton, setShowButton] = useState(false);
@@ -39,9 +41,9 @@ export const ProfilePage = () => {
 		setIsDisabled(() => ({ ...isDisabled, [type]: false }));
 	};
 
-	const onLogout = async () => {
-		dispatch(logoutThunk());
-	};
+	// const onLogout = async () => {
+	// 	dispatch(logoutThunk());
+	// };
 
 	useEffect(() => {
 		if (user) {
@@ -89,7 +91,8 @@ export const ProfilePage = () => {
 
 	return (
 		<main className={styles.main}>
-			<nav className={styles.nav}>
+			<ProfileNavigation />
+			{/* <nav className={styles.nav}>
 				<ul className={styles.ul}>
 					<li className={styles.li}>
 						<NavLink
@@ -132,7 +135,7 @@ export const ProfilePage = () => {
 				<p className="text text_type_main-default text_color_inactive mt-20">
 					В этом разделе вы можете изменить свои персональные данные
 				</p>
-			</nav>
+			</nav> */}
 			<form className={styles.form} onSubmit={onSubmit}>
 				<Input
 					type={"text"}

@@ -18,6 +18,9 @@ export const AppHeader = () => {
 		return state.authSlice.user;
 	});
 
+	const isActiveProfile =
+		link === "/profile" || link === "/profile/orders" || link === "/login";
+
 	useEffect(() => {
 		setLink(pathname);
 	}, [pathname]);
@@ -68,12 +71,10 @@ export const AppHeader = () => {
 
 			<div>
 				<NavLink to={"/profile"} className={`${styles.item} m-5`}>
-					<ProfileIcon
-						type={link === "/profile" ? "primary" : "secondary"}
-					/>
+					<ProfileIcon type={isActiveProfile ? "primary" : "secondary"} />
 					<p
 						className={
-							link === "/profile"
+							isActiveProfile
 								? `text text_type_main-default ml-2 ${styles.textColor}`
 								: `text text_type_main-default text_color_inactive ml-2`
 						}

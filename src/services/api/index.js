@@ -1,14 +1,5 @@
 import api from "./axiosInstance";
 
-export const getIngredients = async () => {
-	return await api.get(`/ingredients`);
-};
-
-export const sendOrderIngredients = (ingredientsIds) =>
-	api.post(`/orders`, {
-		ingredients: ingredientsIds
-	});
-
 export const sendPasswordReset = (email) =>
 	api.post(`/password-reset`, {
 		email: email
@@ -67,4 +58,21 @@ export const sendLogout = async () => {
 	return await api.post(`/auth/logout`, {
 		token: localStorage.getItem("refreshToken")
 	});
+};
+
+export const getIngredients = async () => {
+	return await api.get(`/ingredients`);
+};
+
+export const sendOrderIngredients = (ingredientsIds) =>
+	api.post(`/orders`, {
+		ingredients: ingredientsIds
+	});
+
+export const getAllOrders = () => {
+	return api.get("/orders/all");
+};
+
+export const getOrderFeedDetails = (orderNumber) => {
+	return api.get(`/orders/${orderNumber}`);
 };

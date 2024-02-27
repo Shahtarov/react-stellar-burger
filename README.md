@@ -17,8 +17,9 @@ https://shahtarov.github.io/react-stellar-burger/
 -  JSX;
 -  React;
 -  Redux;
--  Redux toolkit;
+-  Redux Toolkit;
 -  React Router DOM;
+-  WebSockets;
 -  API;
 -  Webpack;
 -  Babel;

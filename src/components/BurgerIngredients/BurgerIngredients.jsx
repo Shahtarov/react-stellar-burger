@@ -7,19 +7,20 @@ import { useRef, useMemo } from "react";
 import { useState } from "react";
 import { setIngredientDetails } from "../../services/reducers/ingredient-details";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const BurgerIngredients = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const ingredients = useSelector(ingredientsSelector.ingredients);
 	const [current, setCurrent] = useState("bun");
+	const location = useLocation();
 
 	const openIngredient = (item) => {
 		dispatch(setIngredientDetails(item));
 		navigate(`ingredients/${item._id}`, {
 			state: {
-				isOpenModal: true
+				background: location
 			}
 		});
 	};

@@ -11,7 +11,6 @@ const IngredientModal = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const ingredients = useSelector(ingredientsSelector.ingredients);
-	console.log(ingredients, "ing");
 	const { id } = useParams();
 
 	useEffect(() => {
