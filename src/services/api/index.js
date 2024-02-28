@@ -64,10 +64,19 @@ export const getIngredients = async () => {
 	return await api.get(`/ingredients`);
 };
 
-export const sendOrderIngredients = (ingredientsIds) =>
-	api.post(`/orders`, {
-		ingredients: ingredientsIds
-	});
+export const sendOrderIngredients = async (ingredientsIds) => {
+	return await api.post(
+		`/orders`,
+		{
+			ingredients: ingredientsIds
+		},
+		{
+			headers: {
+				authorization: `${localStorage.getItem("accessToken")}`
+			}
+		}
+	);
+};
 
 export const getAllOrders = () => {
 	return api.get("/orders/all");

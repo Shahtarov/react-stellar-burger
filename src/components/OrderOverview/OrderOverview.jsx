@@ -25,36 +25,35 @@ const OrderOverview = () => {
 	};
 	const formattedOrderTime = getFormatTime(orderFeedDetailsData?.createdAt);
 
-	const getIngredientsData = useCallback(
-		(ingredientsIds) => {
-			const orderIngredients = ingredientsIds.map((id) =>
-				ingredientsFeedData?.find((ingredient) => id === ingredient?._id)
-			);
+	const getIngredientsData = (ingredientsIds) => {
+		const orderIngredients = ingredientsIds.map((id) =>
+			ingredientsFeedData?.find((ingredient) => id === ingredient?._id)
+		);
 
-			const uniqueIngredientsMap = new Map();
+		const uniqueIngredientsMap = new Map();
 
-			orderIngredients.forEach((item) => {
-				const key = item?.type === "bun" ? "bun" : item?._id;
-				if (!uniqueIngredientsMap.has(key)) {
-					uniqueIngredientsMap.set(key, { ...item, count: 1 });
-				} else {
-					uniqueIngredientsMap.get(key).count++;
-				}
-			});
+		orderIngredients.forEach((item) => {
+			const key = item?.type === "bun" ? "bun" : item?._id;
+			if (!uniqueIngredientsMap.has(key)) {
+				uniqueIngredientsMap.set(key, { ...item, count: 1 });
+			} else {
+				uniqueIngredientsMap.get(key).count++;
+			}
+		});
 
-			const uniqueIngredients = Array.from(uniqueIngredientsMap.values());
+		const uniqueIngredients = Array.from(uniqueIngredientsMap.values());
 
-			const buns = uniqueIngredients.filter((item) => item?.type === "bun");
-			const otherIngredients = uniqueIngredients.filter(
-				(item) => item?.type !== "bun"
-			);
+		const buns = uniqueIngredients.filter((item) => item?.type === "bun");
+		const otherIngredients = uniqueIngredients.filter(
+			(item) => item?.type !== "bun"
+		);
 
-			const sortedIngredients = [...buns, ...otherIngredients];
+		const sortedIngredients = buns
+			? [...buns, ...otherIngredients]
+			: [...otherIngredients];
 
-			return sortedIngredients;
-		},
-		[ingredientsFeedData]
-	);
+		return sortedIngredients;
+	};
 
 	const getTotalPrice = useMemo(() => {
 		return (ingredients) => {
@@ -75,7 +74,7 @@ const OrderOverview = () => {
 				getIngredientsData(orderFeedDetailsData?.ingredients)
 			);
 		}
-	}, [orderFeedDetailsData?.ingredients, getIngredientsData]);
+	}, [orderFeedDetailsData?.ingredients]);
 
 	return (
 		<div className={`${styles.main} mr-10 ml-10`}>

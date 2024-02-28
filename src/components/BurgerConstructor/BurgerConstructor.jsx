@@ -15,6 +15,7 @@ import {
 } from "../../services/reducers/ingredients";
 import * as burgerConstructorSelector from "../../services/reducers/burger-constructor/selectors";
 import { sendOrderDetailsThunk } from "../../services/reducers/order-details";
+import { resetBurgerConstructor } from "../../services/reducers/burger-constructor";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails";
@@ -49,11 +50,14 @@ const BurgerConstructor = () => {
 
 	function sendOrderDetails() {
 		let ingredientsIds = [];
-		const buns = [bun?._id, bun?._id];
+		const buns = bun?._id ? [bun?._id, bun?._id] : null;
 		const mainIngredients = main.map((item) => item._id);
-		ingredientsIds = ingredientsIds.concat(buns, mainIngredients);
+		ingredientsIds = buns
+			? ingredientsIds.concat(buns, mainIngredients)
+			: mainIngredients;
 		dispatch(sendOrderDetailsThunk(ingredientsIds));
 		setOpenModal(true);
+		dispatch(resetBurgerConstructor());
 	}
 
 	return (

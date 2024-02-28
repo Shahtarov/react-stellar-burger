@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from "react";
+import { useMemo } from "react";
 import styles from "./OrderList.module.css";
 import OrderItem from "../OrderItem/OrderItem";
 import { useSelector } from "react-redux";
@@ -11,81 +11,40 @@ export const OrderList = () => {
 	const ordersFeedData = useSelector(ordersFeedSelector);
 	const ingredientsData = useSelector(ingredients);
 
-	// const getIngredientsData = useCallback(
-	// 	(ingredientsIds) => {
-	// 		const orderIngredients = ingredientsIds.map((id) =>
-	// 			ingredientsData?.find((ingredient) => id === ingredient?._id)
-	// 		);
+	const getIngredientsData = (ingredientsIds) => {
+		const orderIngredients = ingredientsIds.map((id) =>
+			ingredientsData?.find((ingredient) => id === ingredient?._id)
+		);
 
-	// 		const uniqueIngredientsMap = new Map();
-	// 		const buns = [];
+		const uniqueIngredientsMap = new Map();
 
-	// 		orderIngredients.forEach((item) => {
-	// 			const key = item?.type === "bun" ? "bun" : item?._id;
-	// 			if (
-	// 				item?.type === "bun" &&
-	// 				!buns.find((bun) => bun._id === item?._id)
-	// 			) {
-	// 				buns.push({ ...item, count: 2 });
-	// 			} else if (!uniqueIngredientsMap.has(key)) {
-	// 				uniqueIngredientsMap.set(key, { ...item, count: 1 });
-	// 			} else {
-	// 				uniqueIngredientsMap.get(key).count++;
-	// 			}
-	// 		});
-
-	// 		const otherIngredients = Array.from(uniqueIngredientsMap.values());
-	// 		const sortedIngredients = [...buns, ...otherIngredients];
-
-	// 		if (sortedIngredients.length >= 6) {
-	// 			sortedIngredients[0] = {
-	// 				...sortedIngredients[0],
-	// 				hiddenIngredientsNumber: sortedIngredients.length - 5
-	// 			};
-	// 		}
-
-	// 		return sortedIngredients;
-	// 	},
-	// 	[ingredientsData]
-	// );
-
-	const getIngredientsData = useCallback(
-		(ingredientsIds) => {
-			const orderIngredients = ingredientsIds.map((id) =>
-				ingredientsData?.find((ingredient) => id === ingredient?._id)
-			);
-
-			const uniqueIngredientsMap = new Map();
-
-			orderIngredients.forEach((item) => {
-				const key = item?.type === "bun" ? "bun" : item?._id;
-				if (!uniqueIngredientsMap.has(key)) {
-					uniqueIngredientsMap.set(key, { ...item, count: 1 });
-				} else {
-					uniqueIngredientsMap.get(key).count++;
-				}
-			});
-
-			const uniqueIngredients = Array.from(uniqueIngredientsMap.values());
-
-			const buns = uniqueIngredients.filter((item) => item?.type === "bun");
-			const otherIngredients = uniqueIngredients.filter(
-				(item) => item?.type !== "bun"
-			);
-
-			const sortedIngredients = [...buns, ...otherIngredients];
-
-			if (sortedIngredients.length >= 6) {
-				sortedIngredients[0] = {
-					...sortedIngredients[0],
-					hiddenIngredientsNumber: sortedIngredients.length - 5
-				};
+		orderIngredients.forEach((item) => {
+			const key = item?.type === "bun" ? "bun" : item?._id;
+			if (!uniqueIngredientsMap.has(key)) {
+				uniqueIngredientsMap.set(key, { ...item, count: 1 });
+			} else {
+				uniqueIngredientsMap.get(key).count++;
 			}
+		});
 
-			return sortedIngredients;
-		},
-		[ingredientsData]
-	);
+		const uniqueIngredients = Array.from(uniqueIngredientsMap.values());
+
+		const buns = uniqueIngredients.filter((item) => item?.type === "bun");
+		const otherIngredients = uniqueIngredients.filter(
+			(item) => item?.type !== "bun"
+		);
+
+		const sortedIngredients = [...buns, ...otherIngredients];
+
+		if (sortedIngredients.length >= 6) {
+			sortedIngredients[0] = {
+				...sortedIngredients[0],
+				hiddenIngredientsNumber: sortedIngredients.length - 5
+			};
+		}
+
+		return sortedIngredients;
+	};
 
 	const getTotalPrice = useMemo(() => {
 		return (ingredients) => {
@@ -98,40 +57,6 @@ export const OrderList = () => {
 			}, 0);
 		};
 	}, []);
-
-	// const getIngredientsData = useCallback(
-	// 	(ingredientsIds) => {
-	// 		const orderIngredients = ingredientsIds.map((id) =>
-	// 			ingredientsData.find((ingredient) => id === ingredient._id)
-	// 		);
-
-	// 		const buns = orderIngredients.filter((item) => item?.type === "bun");
-	// 		const otherIngredients = orderIngredients.filter(
-	// 			(item) => item?.type !== "bun"
-	// 		);
-
-	// 		const sortedIngredients = [...otherIngredients];
-
-	// 		let bunAdded = false;
-
-	// 		buns.forEach((bun) => {
-	// 			if (!bunAdded) {
-	// 				sortedIngredients.push(bun);
-	// 				bunAdded = true;
-	// 			}
-	// 		});
-
-	// 		if (sortedIngredients.length >= 6) {
-	// 			sortedIngredients[0] = {
-	// 				...sortedIngredients[0],
-	// 				hiddenIngredientsNumber: sortedIngredients.length - 5
-	// 			};
-	// 		}
-
-	// 		return sortedIngredients;
-	// 	},
-	// 	[ingredientsData]
-	// );
 
 	return (
 		<div className={`${styles.main} custom-scroll`}>
