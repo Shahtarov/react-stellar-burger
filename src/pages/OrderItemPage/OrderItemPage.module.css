@@ -1,0 +1,12 @@
+.main {
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.orderNumber {
+	text-align: center;
+}

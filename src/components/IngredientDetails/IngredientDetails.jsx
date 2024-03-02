@@ -5,6 +5,7 @@ import * as ingredientDetailsSelector from "../../services/reducers/ingredient-d
 const IngredientDetails = () => {
 	const data = useSelector(ingredientDetailsSelector.ingredientDetails);
 
+	if (!data) return null;
 	return (
 		<div className={styles.container}>
 			<img className={styles.image} src={data.image_large} alt={data.name} />

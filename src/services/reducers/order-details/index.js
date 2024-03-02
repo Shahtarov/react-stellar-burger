@@ -2,15 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { sendOrderIngredients } from "../../api";
 
 const initialState = {
-	orderDetails: null,
+	orderDetails: {
+		name: "",
+		order: {
+			number: 0
+		},
+		success: false
+	},
 	loading: "idle",
-	error: null
+	error: ""
 };
 
 export const sendOrderDetailsThunk = createAsyncThunk(
 	"orderDetails",
 	async (ingredientIds) => {
-		const { data } = await sendOrderIngredients(ingredientIds);
+		const data = await sendOrderIngredients(ingredientIds);
 		return data;
 	}
 );
@@ -26,6 +32,7 @@ export const orderDetailsSlice = createSlice({
 			})
 			.addCase(sendOrderDetailsThunk.rejected, (state, action) => {
 				state.loading = "failed";
+				console.log("rejected");
 				state.orderDetails = null;
 				state.error = action.error;
 			})

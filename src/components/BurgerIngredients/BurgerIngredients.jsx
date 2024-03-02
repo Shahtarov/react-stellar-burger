@@ -3,27 +3,26 @@ import IngredientsList from "./IngredientsList/IngredientsList";
 
 import { useSelector, useDispatch } from "react-redux";
 import * as ingredientsSelector from "../../services/reducers/ingredients/selectors";
-import { useEffect, useRef, useMemo } from "react";
-import { getIngredientsThunk } from "../../services/reducers/ingredients";
-import Modal from "../Modal/Modal";
-import IngredientDetails from "../IngredientDetails/IngredientDetails";
+import { useRef, useMemo } from "react";
 import { useState } from "react";
 import { setIngredientDetails } from "../../services/reducers/ingredient-details";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const BurgerIngredients = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const ingredients = useSelector(ingredientsSelector.ingredients);
-	const [openModal, setOpenModal] = useState(false);
 	const [current, setCurrent] = useState("bun");
-
-	useEffect(() => {
-		dispatch(getIngredientsThunk());
-	}, []);
+	const location = useLocation();
 
 	const openIngredient = (item) => {
 		dispatch(setIngredientDetails(item));
-		setOpenModal(true);
+		navigate(`ingredients/${item._id}`, {
+			state: {
+				background: location
+			}
+		});
 	};
 
 	const title = {
@@ -44,15 +43,15 @@ const BurgerIngredients = () => {
 	const mainRef = useRef(null);
 
 	const buns = useMemo(
-		() => ingredients.filter((item) => item?.type === "bun"),
+		() => ingredients?.filter((item) => item?.type === "bun") || [],
 		[ingredients]
 	);
 	const main = useMemo(
-		() => ingredients.filter((item) => item?.type === "main"),
+		() => ingredients?.filter((item) => item?.type === "main") || [],
 		[ingredients]
 	);
 	const sauces = useMemo(
-		() => ingredients.filter((item) => item?.type === "sauce"),
+		() => ingredients?.filter((item) => item?.type === "sauce") || [],
 		[ingredients]
 	);
 
@@ -130,15 +129,6 @@ const BurgerIngredients = () => {
 				{renderIngredients(sauces)}
 				{renderIngredients(main)}
 			</div>
-
-			{openModal && (
-				<Modal
-					title="Детали ингредиента"
-					closeModal={() => setOpenModal(false)}
-				>
-					<IngredientDetails />
-				</Modal>
-			)}
 		</div>
 	);
 };

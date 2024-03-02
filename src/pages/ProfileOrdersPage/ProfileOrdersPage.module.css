@@ -1,0 +1,11 @@
+.main {
+	margin: 100px auto 0;
+	display: flex;
+	justify-content: space-between;
+
+	width: 1060px;
+}
+
+.orders {
+	width: 650px;
+}
