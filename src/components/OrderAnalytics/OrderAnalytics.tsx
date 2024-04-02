@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
 import { ordersFeedSelector } from "../../services/reducers/orders-feed/selectors";
 import styles from "./OrderAnalytics.module.css";
+import { useAppSelector } from "../..";
 
 const OrderAnalytics = () => {
-	const ordersFeedData = useSelector(ordersFeedSelector);
+	const ordersFeedData = useAppSelector(ordersFeedSelector);
 
 	const ordersNumberDone = ordersFeedData?.orders
 		.filter((item) => item.status === "done")

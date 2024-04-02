@@ -1,10 +1,10 @@
 import styles from "./IngredientDetails.module.css";
-import { useSelector } from "react-redux";
 import * as ingredientDetailsSelector from "../../services/reducers/ingredient-details/selectors";
 import { FC } from "react";
+import { useAppSelector } from "../..";
 
 const IngredientDetails: FC = () => {
-	const data = useSelector(ingredientDetailsSelector.ingredientDetails);
+	const data = useAppSelector(ingredientDetailsSelector.ingredientDetails);
 
 	if (!data) return null;
 	return (

@@ -6,7 +6,7 @@ import styles from "./LoginPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FC, FormEvent, useState } from "react";
 import { loginThunk } from "../../services/reducers/auth";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../..";
 
 export const LoginPage: FC = () => {
 	const [email, setEmail] = useState<string>("");
@@ -15,13 +15,13 @@ export const LoginPage: FC = () => {
 	const [isEmailFocused, setIsEmailFocused] = useState<boolean>(false);
 	const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const toggleShowPassword = () => {
 		setShowPassword(!showPassword);
 	};
 
-	const onSubmit = async (e: FormEvent) => {
+	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
 			await dispatch(loginThunk({ email, password }));

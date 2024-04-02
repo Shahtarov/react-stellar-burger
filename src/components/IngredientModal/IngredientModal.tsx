@@ -1,16 +1,16 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import Modal from "../Modal/Modal";
-import { useSelector, useDispatch } from "react-redux";
 import { FC, useEffect } from "react";
 import { setIngredientDetails } from "../../services/reducers/ingredient-details";
 import * as ingredientsSelector from "../../services/reducers/ingredients/selectors";
+import { useAppDispatch, useAppSelector } from "../..";
 
 const IngredientModal: FC = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const dispatch = useDispatch();
-	const ingredients = useSelector(ingredientsSelector.ingredients);
+	const dispatch = useAppDispatch();
+	const ingredients = useAppSelector(ingredientsSelector.ingredients);
 	const { id } = useParams();
 
 	useEffect(() => {

@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import IngredientDetails from "../../components/IngredientDetails/IngredientDetails";
-import { useSelector, useDispatch } from "react-redux";
 import { FC, useEffect } from "react";
 import { setIngredientDetails } from "../../services/reducers/ingredient-details";
 import * as ingredientsSelector from "../../services/reducers/ingredients/selectors";
 import styles from "./IngredientPage.module.css";
 import { IIngredient } from "../../interfaces/IIngredient";
+import { useAppDispatch, useAppSelector } from "../..";
 
 export const IngredientPage: FC = () => {
-	const dispatch = useDispatch();
-	const ingredients: Array<IIngredient> = useSelector(
+	const dispatch = useAppDispatch();
+	const ingredients: Array<IIngredient> = useAppSelector(
 		ingredientsSelector.ingredients
 	);
 	const { id } = useParams();

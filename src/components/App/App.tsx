@@ -17,15 +17,15 @@ import {
 import { AppHeader } from "../AppHeader/AppHeader";
 import { OnlyAuth, OnlyUnAuth } from "../ProtectedRoute/ProtectedRoute";
 import { Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { getUserThunk, reset } from "../../services/reducers/auth";
 import { useLocation } from "react-router-dom";
 import { getIngredientsThunk } from "../../services/reducers/ingredients";
 import IngredientModal from "../IngredientModal/IngredientModal";
 import OrderModal from "../OrderModal/OrderModal";
+import { useAppDispatch } from "../..";
 
 function App() {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const location = useLocation();
 	const background = location?.state?.background;
 

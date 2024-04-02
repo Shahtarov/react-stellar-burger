@@ -1,16 +1,15 @@
 import styles from "./FeedOrdersPage.module.css";
 import { OrderList } from "../../components/OrderList/OrderList";
 import { FC, useEffect } from "react";
-
-import { useDispatch } from "react-redux";
 import {
 	wsOrdersInit,
 	wsOrdersClose
 } from "../../services/reducers/orders-feed";
 import OrderAnalytics from "../../components/OrderAnalytics/OrderAnalytics";
+import { useAppDispatch } from "../..";
 
 export const FeedOrdersPage: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(wsOrdersInit("wss://norma.nomoreparties.space/orders/all"));

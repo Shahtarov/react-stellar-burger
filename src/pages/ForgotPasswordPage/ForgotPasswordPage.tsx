@@ -6,13 +6,13 @@ import {
 import styles from "./ForgotPasswordPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { sendPasswordResetThunk } from "../../services/reducers/auth";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../..";
 
 export const ForgotPasswordPage: FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const inputEmail = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		inputEmail.current && inputEmail.current.focus();

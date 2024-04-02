@@ -1,18 +1,18 @@
 import { useEffect, useState, useMemo, FC } from "react";
 import styles from "./OrderOverview.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector } from "react-redux";
 import moment from "moment";
 import "moment/locale/ru";
 import { ingredients } from "../../services/reducers/ingredients/selectors";
 import { RootState } from "../../services";
 import { IIngredient } from "../../interfaces/IIngredient";
+import { useAppSelector } from "../..";
 
 const OrderOverview: FC = () => {
-	const orderFeedDetailsData = useSelector(
+	const orderFeedDetailsData = useAppSelector(
 		(state: RootState) => state.orderFeedDetailsSlice.orderFeedDetails
 	);
-	const ingredientsFeedData = useSelector(ingredients);
+	const ingredientsFeedData = useAppSelector(ingredients);
 	const [ingredientsData, setIngredientsData] = useState<IIngredient[] | null>(
 		null
 	);

@@ -1,12 +1,12 @@
 import styles from "./CartList.module.css";
-import { useSelector } from "react-redux";
 import * as burgerConstructorSelector from "../../../services/reducers/burger-constructor/selectors";
 import CartItem from "../CartItem/CartItem";
 import { FC } from "react";
 import { IIngredient } from "../../../interfaces/IIngredient";
+import { useAppSelector } from "../../..";
 
 const CartList: FC = () => {
-	const main = useSelector(burgerConstructorSelector.main);
+	const main = useAppSelector(burgerConstructorSelector.main);
 
 	return (
 		<div className={`${styles.itemList} custom-scroll`}>

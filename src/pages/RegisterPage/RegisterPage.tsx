@@ -4,9 +4,9 @@ import {
 	Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { userRegistrationThunk } from "../../services/reducers/auth";
 import styles from "./RegisterPage.module.css";
+import { useAppDispatch } from "../..";
 
 export const RegisterPage: FC = () => {
 	const [name, setName] = useState<string>("");
@@ -17,7 +17,7 @@ export const RegisterPage: FC = () => {
 	const [isEmailFocused, setIsEmailFocused] = useState<boolean>(false);
 	const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const toggleShowPassword = () => {
 		setShowPassword(!showPassword);

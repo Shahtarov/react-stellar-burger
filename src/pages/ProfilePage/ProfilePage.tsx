@@ -12,10 +12,9 @@ import {
 	MouseEvent
 } from "react";
 import { patchUserThunk } from "../../services/reducers/auth";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { ProfileNavigation } from "../../components/ProfileNavigation/ProfileNavigation";
 import { RootState } from "../../services";
+import { useAppDispatch, useAppSelector } from "../..";
 
 export const ProfilePage: FC = () => {
 	type TType = "email" | "password" | "name";
@@ -26,11 +25,11 @@ export const ProfilePage: FC = () => {
 		name: true
 	});
 
-	const user = useSelector((state: RootState) => state.authSlice.user);
+	const user = useAppSelector((state: RootState) => state.authSlice.user);
 	const [nameInput, setNameInput] = useState<string>(user?.name || "");
 	const [emailInput, setEmailInput] = useState<string>(user?.email || "");
 	const [passwordInput, setPasswordInput] = useState<string>("");
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const [isPasswordFocus, setIsPasswordFocus] = useState<boolean>(false);
 	const [typePassword, setTypePassword] = useState<"password" | "text">(

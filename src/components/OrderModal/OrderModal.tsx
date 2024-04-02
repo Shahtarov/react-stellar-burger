@@ -1,5 +1,4 @@
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { FC, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import { getOrderFeedDetails } from "../../services/api";
@@ -8,10 +7,11 @@ import {
 	setOrderFeedDetails
 } from "../../services/reducers/order-feed-details";
 import OrderOverview from "../OrderOverview/OrderOverview";
+import { useAppDispatch } from "../..";
 
 const OrderModal: FC = () => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const location = useLocation();
 	const { number } = useParams();
 

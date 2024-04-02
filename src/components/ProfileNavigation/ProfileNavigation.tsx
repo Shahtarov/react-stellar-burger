@@ -1,12 +1,12 @@
 import styles from "./ProfileNavigation.module.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { logoutThunk } from "../../services/reducers/auth";
-import { useDispatch } from "react-redux";
 import { FC } from "react";
+import { useAppDispatch } from "../..";
 
 export const ProfileNavigation: FC = () => {
 	const location = useLocation();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const onLogout = async () => {
 		dispatch(logoutThunk());
 	};

@@ -3,7 +3,6 @@ import {
 	ConstructorElement,
 	DragIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "react-redux";
 import {
 	deleteMain,
 	setMainDisposition
@@ -12,13 +11,14 @@ import { useDrag, useDrop } from "react-dnd";
 import { decrementCountIngredient } from "../../../services/reducers/ingredients";
 import { FC } from "react";
 import { IIngredient } from "../../../interfaces/IIngredient";
+import { useAppDispatch } from "../../..";
 
 interface ICartItemProps {
 	ingredient: IIngredient;
 }
 
 const CartItem: FC<ICartItemProps> = ({ ingredient }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const removeMain = (item: IIngredient) => {
 		dispatch(deleteMain(item.id));
 		dispatch(decrementCountIngredient(item._id));

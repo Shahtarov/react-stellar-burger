@@ -7,7 +7,7 @@ import styles from "./ResetPasswordPage.module.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { sendNewPasswordResetThunk } from "../../services/reducers/auth";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../..";
 
 export const ResetPasswordPage: FC = () => {
 	const [resetCode, setResetCode] = useState<string>("");
@@ -15,7 +15,7 @@ export const ResetPasswordPage: FC = () => {
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const passwordInput = useRef<HTMLInputElement>(null);
 	const resetCodeInput = useRef<HTMLInputElement>(null);
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const toggleShowPassword = () => {

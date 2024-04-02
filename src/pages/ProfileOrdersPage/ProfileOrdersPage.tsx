@@ -2,14 +2,14 @@ import styles from "./ProfileOrdersPage.module.css";
 import { ProfileNavigation } from "../../components/ProfileNavigation/ProfileNavigation";
 import { OrderList } from "../../components/OrderList/OrderList";
 import { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import {
 	wsOrdersClose,
 	wsOrdersInit
 } from "../../services/reducers/orders-feed";
+import { useAppDispatch } from "../..";
 
 export const ProfileOrdersPage: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const accessToken = localStorage.getItem("accessToken");
 	const sliceToken = (token: string | null) => {
 		if (token) {

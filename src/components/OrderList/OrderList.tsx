@@ -1,16 +1,16 @@
 import { useMemo } from "react";
 import styles from "./OrderList.module.css";
 import OrderItem from "../OrderItem/OrderItem";
-import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ordersFeedSelector } from "../../services/reducers/orders-feed/selectors";
 import { ingredients } from "../../services/reducers/ingredients/selectors";
 import { IIngredient } from "../../interfaces/IIngredient";
+import { useAppSelector } from "../..";
 
 export const OrderList = () => {
 	const location = useLocation();
-	const ordersFeedData = useSelector(ordersFeedSelector);
-	const ingredientsData = useSelector(ingredients);
+	const ordersFeedData = useAppSelector(ordersFeedSelector);
+	const ingredientsData = useAppSelector(ingredients);
 
 	const getIngredientsData = (ingredientsIds: string[]) => {
 		const orderIngredients = ingredientsIds.map((id) =>

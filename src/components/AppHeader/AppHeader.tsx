@@ -8,17 +8,14 @@ import styles from "./AppHeader.module.css";
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { RootState } from "../../services";
+import { useAppSelector } from "../..";
 
 export const AppHeader = () => {
 	const { pathname } = useLocation();
 	const [link, setLink] = useState<string>(pathname);
 
-	const user = useSelector((state: RootState) => {
-		return state.authSlice.user;
-	});
-
+	const user = useAppSelector((state: RootState) => state.authSlice.user);
 	const isActiveProfile =
 		link === "/profile" || link === "/profile/orders" || link === "/login";
 

@@ -1,10 +1,10 @@
 import styles from "./OrderDetails.module.css";
 import checkIcon from "../../images/graphics.png";
-import { useSelector } from "react-redux";
 import * as orderDetailsSelector from "../../services/reducers/order-details/selectors";
+import { useAppSelector } from "../..";
 
 const OrderDetails = () => {
-	const orderDetails = useSelector(orderDetailsSelector.orderDetails);
+	const orderDetails = useAppSelector(orderDetailsSelector.orderDetails);
 
 	return (
 		<div className={`${styles.container}`}>

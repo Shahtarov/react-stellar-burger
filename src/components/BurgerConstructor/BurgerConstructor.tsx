@@ -8,7 +8,6 @@ import styles from "./BurgerConstructor.module.css";
 import CartList from "./CartList/CartList";
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
 import { setBun, setMain } from "../../services/reducers/burger-constructor";
 import {
 	incrementCountIngredient,
@@ -19,14 +18,18 @@ import { sendOrderDetailsThunk } from "../../services/reducers/order-details";
 import { resetBurgerConstructor } from "../../services/reducers/burger-constructor";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails";
+import { useAppDispatch, useAppSelector } from "../..";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../../services";
 
 const BurgerConstructor = () => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
-	const dispatch = useDispatch();
-
-	const bun = useSelector(burgerConstructorSelector.bun);
-	const main = useSelector(burgerConstructorSelector.main);
-	const sum = useSelector(burgerConstructorSelector.sum);
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+	const bun = useAppSelector(burgerConstructorSelector.bun);
+	const main = useAppSelector(burgerConstructorSelector.main);
+	const sum = useAppSelector(burgerConstructorSelector.sum);
+	const user = useAppSelector((state: RootState) => state.authSlice.user);
 
 	const dropIngredient = (ingredient: { type: string; _id: string }) => {
 		if (ingredient.type === "bun") {
@@ -49,17 +52,23 @@ const BurgerConstructor = () => {
 	});
 
 	function sendOrderDetails() {
-		let ingredientsIds: Array<string> = [];
-		const buns: Array<string> | null = bun?._id ? [bun?._id, bun?._id] : null;
-		const mainIngredients: Array<string> = main.map(
-			(item: { _id: string }) => item._id
-		);
-		ingredientsIds = buns
-			? ingredientsIds.concat(buns, mainIngredients)
-			: mainIngredients;
-		dispatch(sendOrderDetailsThunk(ingredientsIds));
-		setOpenModal(true);
-		dispatch(resetBurgerConstructor());
+		if (!!user) {
+			let ingredientsIds: Array<string> = [];
+			const buns: Array<string> | null = bun?._id
+				? [bun?._id, bun?._id]
+				: null;
+			const mainIngredients: Array<string> = main.map(
+				(item: { _id: string }) => item._id
+			);
+			ingredientsIds = buns
+				? ingredientsIds.concat(buns, mainIngredients)
+				: mainIngredients;
+			dispatch(sendOrderDetailsThunk(ingredientsIds));
+			setOpenModal(true);
+			dispatch(resetBurgerConstructor());
+		} else {
+			navigate("/login", { replace: false });
+		}
 	}
 
 	return (
@@ -100,10 +109,7 @@ const BurgerConstructor = () => {
 			<div className={`${styles.orderTotal} mr-4 mt-10`}>
 				<div className={`${styles.price}`}>
 					<p className="text text_type_digits-medium">{sum}</p>
-					<CurrencyIcon
-						// className={`${styles.currencyIcon}`}
-						type="secondary"
-					/>
+					<CurrencyIcon type="secondary" />
 				</div>
 				<Button
 					htmlType="button"

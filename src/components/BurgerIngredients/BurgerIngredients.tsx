@@ -1,7 +1,5 @@
 import styles from "./BurgerIngredients.module.css";
 import IngredientsList from "./IngredientsList/IngredientsList";
-
-import { useSelector, useDispatch } from "react-redux";
 import * as ingredientsSelector from "../../services/reducers/ingredients/selectors";
 import { useRef, useMemo, FC, MutableRefObject } from "react";
 import { useState } from "react";
@@ -10,6 +8,7 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { RootState } from "../../services";
 import { IIngredient } from "../../interfaces/IIngredient";
+import { useAppDispatch, useAppSelector } from "../..";
 
 interface ITitle {
 	[name: string]: string;
@@ -22,9 +21,9 @@ const title: ITitle = {
 };
 
 const BurgerIngredients: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const ingredients = useSelector((state: RootState) =>
+	const ingredients = useAppSelector((state: RootState) =>
 		ingredientsSelector.ingredients(state)
 	);
 	const [current, setCurrent] = useState<string>("bun");
