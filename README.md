@@ -27,5 +27,5 @@ https://shahtarov.github.io/react-stellar-burger/
 
 ## Preview
 
-![alt text](https://github.com/Shahtarob/react-stellar-burger/blob/main/preview1.png?raw=true)
+![alt text](https://github.com/Shahtarob/react-stellar-burger/blob/main/src/images/preview1.png?raw=true)
 ---
