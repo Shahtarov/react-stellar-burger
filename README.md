@@ -25,4 +25,7 @@ https://shahtarov.github.io/react-stellar-burger/
 -  Babel;
 -  Figma.
 
+## Preview
+
+![alt text](https://github.com/Shahtarob/react-stellar-burger/blob/main/preview1.png?raw=true)
 ---
