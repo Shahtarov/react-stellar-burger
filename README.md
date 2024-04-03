@@ -14,8 +14,8 @@ https://shahtarov.github.io/react-stellar-burger/
 
 ## The technology stack used
 
--  JSX;
 -  React;
+-  TypeScript
 -  Redux;
 -  Redux Toolkit;
 -  React Router DOM;
