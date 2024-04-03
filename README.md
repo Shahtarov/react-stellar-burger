@@ -25,7 +25,16 @@ https://shahtarov.github.io/react-stellar-burger/
 -  Babel;
 -  Figma.
 
-## Preview
+---
 
-![alt text](https://github.com/Shahtarov/react-stellar-burger/blob/main/src/images/preview1.png?raw=true)
+## Preview
+### Ordering
+![Ordering](https://github.com/Shahtarov/react-stellar-burger/blob/main/src/images/preview1.png?raw=true)
+
+### Order Analytics
+![Order Analytics](https://github.com/Shahtarov/react-stellar-burger/blob/main/src/images/preview2.png?raw=true)
+
+### Personal account
+![Personal account](https://github.com/Shahtarov/react-stellar-burger/blob/main/src/images/preview3.png?raw=true)
+
 ---
