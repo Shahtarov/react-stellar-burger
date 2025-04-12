@@ -8,7 +8,7 @@ Project burger constructor and ordering.
 
 ## Link to the project
 
-https://shahtarov.github.io/
+https://shahtarov.github.io/react-stellar-burger/
 
 ---
 
