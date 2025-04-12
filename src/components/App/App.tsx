@@ -49,6 +49,7 @@ function App() {
 			<Suspense fallback={<>"Загрузка..."</>}>
 				<Routes location={background || location}>
 					<Route path="/" element={<HomePage />} />
+					<Route path="/react-stellar-burger" element={<HomePage />} />
 					<Route path="*" element={<NotFoundPage />} />
 
 					<Route
