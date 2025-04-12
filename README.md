@@ -8,7 +8,7 @@ Project burger constructor and ordering.
 
 ## Link to the project
 
-https://shahtarov.github.io/react-stellar-burger/
+https://shahtarov.github.io/
 
 ---
 
@@ -28,13 +28,17 @@ https://shahtarov.github.io/react-stellar-burger/
 ---
 
 ## Preview
+
 ### Ordering
+
 ![Ordering](https://github.com/Shahtarov/react-stellar-burger/blob/main/src/images/preview1.png?raw=true)
 
 ### Order Analytics
+
 ![Order Analytics](https://github.com/Shahtarov/react-stellar-burger/blob/main/src/images/preview2.png?raw=true)
 
 ### Personal account
+
 ![Personal account](https://github.com/Shahtarov/react-stellar-burger/blob/main/src/images/preview3.png?raw=true)
 
 ---
